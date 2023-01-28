@@ -24,7 +24,9 @@ jobs:
     - uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go }}
-    - run: go test -v -coverprofile=coverage.txt ./...
+    - run: go test -v ./...
+    - run: go test -coverprofile=coverage.txt ./...
+      if: matrix.go == '1.18'
     - uses: codecov/codecov-action@v3.1.1
       if: matrix.go == '1.18'
       with:
