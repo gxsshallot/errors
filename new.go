@@ -2,11 +2,8 @@ package errors
 
 import "fmt"
 
-func New(
-	code int,
-	message string,
-) *errorBase {
-	return newBase(code, message, 0, "", nil, EnableStack)
+func New(code int) *errorBase {
+	return newBase(code, GlobalCodes.Get(code), 0, "", nil, EnableStack)
 }
 
 func Newf(
@@ -14,7 +11,12 @@ func Newf(
 	messageFormat string,
 	messageArgs ...interface{},
 ) *errorBase {
-	message := fmt.Sprintf(messageFormat, messageArgs...)
+	var message string
+	if len(messageArgs) > 0 {
+		message = fmt.Sprintf(messageFormat, messageArgs...)
+	} else {
+		message = messageFormat
+	}
 	return newBase(code, message, 0, "", nil, EnableStack)
 }
 

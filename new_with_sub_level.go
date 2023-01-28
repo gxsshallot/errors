@@ -1,5 +1,9 @@
 package errors
 
+func NewSub(code int, subCode int) *errorBase {
+	return newBase(code, GlobalCodes.Get(code), subCode, GlobalSubCodes.Get(subCode), nil, EnableStack)
+}
+
 func NewSubLevel(
 	code int,
 	message string,
