@@ -65,6 +65,7 @@ func TestNew(t *testing.T) {
 		Err     error
 		IsValid bool
 	}{
+		{nil, false},
 		{New(code), true},
 		{NewSub(code, subCode), true},
 		{errors.New(msg), false},

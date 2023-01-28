@@ -1,12 +1,19 @@
 package errors
 
 import (
-	"errors"
+	"reflect"
 )
 
 // convert error to *errorBase
 func Revert(err error) (*errorBase, bool) {
+	if err == nil {
+		return nil, false
+	}
 	target := &errorBase{}
-	ok := errors.As(err, &target)
-	return target, ok
+	val := reflect.ValueOf(&target)
+	if reflect.TypeOf(err).AssignableTo(val.Type().Elem()) {
+		val.Elem().Set(reflect.ValueOf(err))
+		return target, true
+	}
+	return nil, false
 }
