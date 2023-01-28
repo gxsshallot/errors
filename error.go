@@ -1,5 +1,7 @@
 package errors
 
+import "fmt"
+
 // enable or disable crash stack log
 var EnableStack = true
 
@@ -23,7 +25,19 @@ type errorBase[T CODE] struct {
 	Attach     interface{}
 
 	// crash stack log
-	stack string
+	Stack string
+}
+
+func (e errorBase[T]) Error() (result string) {
+	var zero T
+	result += fmt.Sprintf("code=%v message=%s", e.Code, e.Message)
+	if e.SubCode != zero {
+		result += fmt.Sprintf("\nsubcode=%v submessage=%s", e.SubCode, e.SubMessage)
+	}
+	if len(e.Stack) > 0 {
+		result += fmt.Sprintf("\n\nstacks:\n%s", e.Stack)
+	}
+	return
 }
 
 func newBase[T CODE](
@@ -40,6 +54,6 @@ func newBase[T CODE](
 		SubCode:    subCode,
 		SubMessage: subMessage,
 		Attach:     attach,
-		stack:      getStack(enableStack),
+		Stack:      getStack(enableStack),
 	}
 }

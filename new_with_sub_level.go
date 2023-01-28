@@ -1,6 +1,6 @@
 package errors
 
-func NewWithSubLevel[T CODE](
+func NewSubLevel[T CODE](
 	code T,
 	message string,
 	subCode T,
@@ -9,7 +9,7 @@ func NewWithSubLevel[T CODE](
 	return newBase(code, message, subCode, subMessage, nil, EnableStack)
 }
 
-func NewWithSubLevelFull[T CODE](
+func NewSubLevelFull[T CODE](
 	code T,
 	message string,
 	subCode T,
