@@ -17,7 +17,7 @@
 首先，需要导入包名到程序中：
 
 ```go
-import "github.com/gaoxiaosong/errors
+import "github.com/gaoxiaosong/errors"
 ```
 
 (可选) 全局开启/禁用调用栈信息:
@@ -39,13 +39,13 @@ const (
 errors.GlobalCodes.Add(CodeError1, "err1")
 errors.GlobalSubCodes.Add(SubCodeError11, "suberr1")
 
-// delete if you want
+// 如果需要删除的话
 errors.GlobalCodes.Del(CodeError1)
 errors.GlobalSubCodes.Del(SubCodeError11)
 
-// you can get error message manuanlly
-msg := errors.GlobalCodes.Del(CodeError1)
-subMsg := errors.GlobalSubCodes.Del(SubCodeError11)
+// 可以直接获取错误码对应的错误消息
+msg := errors.GlobalCodes.Get(CodeError1)
+subMsg := errors.GlobalSubCodes.Get(SubCodeError11)
 ```
 
 在程序中使用`NewXXX`方法，生成`error`对象：

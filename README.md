@@ -19,7 +19,7 @@ This package is used for generating error.
 You should import the package in your source file first:
 
 ```go
-import "github.com/gaoxiaosong/errors
+import "github.com/gaoxiaosong/errors"
 ```
 
 (optional) Enable/Disable the runtime stack option globally:
@@ -46,8 +46,8 @@ errors.GlobalCodes.Del(CodeError1)
 errors.GlobalSubCodes.Del(SubCodeError11)
 
 // you can get error message manuanlly
-msg := errors.GlobalCodes.Del(CodeError1)
-subMsg := errors.GlobalSubCodes.Del(SubCodeError11)
+msg := errors.GlobalCodes.Get(CodeError1)
+subMsg := errors.GlobalSubCodes.Get(SubCodeError11)
 ```
 
 Use `NewXXX` method in program as `error` interface:
