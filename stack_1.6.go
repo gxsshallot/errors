@@ -1,4 +1,4 @@
-// +build go1.7
+// +build !go1.7
 
 package errors
 
@@ -14,13 +14,11 @@ func getStack(enableStack bool) (stack string) {
 	}
 	ptr := make([]uintptr, MaxStackDepth)
 	length := runtime.Callers(3, ptr) // skip "runtime.Callers", "getStack", "newBase"
-	frames := runtime.CallersFrames(ptr[:length])
-	for {
-		item, more := frames.Next()
-		if !more {
-			break
-		}
-		stack += fmt.Sprintf("%s:\n\t%s:%d (0x%x)\n", item.Function, item.File, item.Line, item.Entry)
+	for i := 0; i < length; i++ {
+		ptrItem := ptr[i]
+		itemFunc := runtime.FuncForPC(ptrItem)
+		fileName, fileLine := itemFunc.FileLine(ptrItem)
+		stack += fmt.Sprintf("%s:\n\t%s:%d (0x%x)\n", itemFunc.Name(), fileName, fileLine, itemFunc.Entry())
 	}
 	stack = strings.TrimSuffix(stack, "\n")
 	return
