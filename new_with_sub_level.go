@@ -1,21 +1,21 @@
 package errors
 
-func NewSubLevel[T CODE](
-	code T,
+func NewSubLevel(
+	code int,
 	message string,
-	subCode T,
+	subCode int,
 	subMessage string,
-) *errorBase[T] {
+) *errorBase {
 	return newBase(code, message, subCode, subMessage, nil, EnableStack)
 }
 
-func NewSubLevelFull[T CODE](
-	code T,
+func NewSubLevelFull(
+	code int,
 	message string,
-	subCode T,
+	subCode int,
 	subMessage string,
 	attach interface{},
 	enableStack bool,
-) *errorBase[T] {
+) *errorBase {
 	return newBase(code, message, subCode, subMessage, attach, enableStack)
 }

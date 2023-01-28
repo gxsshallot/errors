@@ -2,30 +2,34 @@ package errors
 
 import "fmt"
 
-func New[T CODE](
-	code T,
+func New(
+	code int,
 	message string,
-) *errorBase[T] {
-	var zero T
-	return newBase(code, message, zero, "", nil, EnableStack)
+) *errorBase {
+	return newBase(code, message, 0, "", nil, EnableStack)
 }
 
-func Newf[T CODE](
-	code T,
+func Newf(
+	code int,
 	messageFormat string,
 	messageArgs ...interface{},
-) *errorBase[T] {
-	var zero T
+) *errorBase {
 	message := fmt.Sprintf(messageFormat, messageArgs...)
-	return newBase(code, message, zero, "", nil, EnableStack)
+	return newBase(code, message, 0, "", nil, EnableStack)
 }
 
-func NewFull[T CODE](
-	code T,
+func NewFull(
+	code int,
 	message string,
 	attach interface{},
 	enableStack bool,
-) *errorBase[T] {
-	var zero T
-	return newBase(code, message, zero, "", attach, enableStack)
+) *errorBase {
+	return newBase(code, message, 0, "", attach, enableStack)
+}
+
+func NewWithError(
+	code int,
+	err error,
+) *errorBase {
+	return newBase(code, err.Error(), 0, "", nil, EnableStack)
 }

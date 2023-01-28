@@ -8,19 +8,11 @@ var EnableStack = true
 // max stack depth for runtime caller
 var MaxStackDepth = 100
 
-type CODE interface {
-	~int | ~string
-}
-
-/*
- * It is error struct to record business error information and crash stack.
- * Support recording two level of code-message.
- * Support recording a custom attach data.
- */
-type errorBase[T CODE] struct {
-	Code       T
+// It is error struct to record business error information and crash stack.
+type errorBase struct {
+	Code       int
 	Message    string
-	SubCode    T
+	SubCode    int
 	SubMessage string
 	Attach     interface{}
 
@@ -28,10 +20,9 @@ type errorBase[T CODE] struct {
 	Stack string
 }
 
-func (e errorBase[T]) Error() (result string) {
-	var zero T
+func (e errorBase) Error() (result string) {
 	result += fmt.Sprintf("code=%v message=%s", e.Code, e.Message)
-	if e.SubCode != zero {
+	if e.SubCode != 0 {
 		result += fmt.Sprintf("\nsubcode=%v submessage=%s", e.SubCode, e.SubMessage)
 	}
 	if len(e.Stack) > 0 {
@@ -40,15 +31,15 @@ func (e errorBase[T]) Error() (result string) {
 	return
 }
 
-func newBase[T CODE](
-	code T,
+func newBase(
+	code int,
 	message string,
-	subCode T,
+	subCode int,
 	subMessage string,
 	attach interface{},
 	enableStack bool,
-) *errorBase[T] {
-	return &errorBase[T]{
+) *errorBase {
+	return &errorBase{
 		Code:       code,
 		Message:    message,
 		SubCode:    subCode,
