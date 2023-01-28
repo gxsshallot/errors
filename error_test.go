@@ -20,6 +20,7 @@ func TestNew(t *testing.T) {
 	for _, err := range errListManual {
 		if len(err.Error()) == 0 {
 			t.Error("invalid Error() output")
+			continue
 		}
 	}
 	// map test
@@ -52,9 +53,31 @@ func TestNew(t *testing.T) {
 		}
 		if item.ValidMessage == (len(err.Message) == 0) {
 			t.Error("message invalid")
+			continue
 		}
 		if item.ValidSubMessage == (len(err.SubMessage) == 0) {
 			t.Error("sub_message invalid")
+			continue
+		}
+	}
+	// revert test
+	errListRevert := []struct {
+		Err     error
+		IsValid bool
+	}{
+		{New(code), true},
+		{NewSub(code, subCode), true},
+		{errors.New(msg), false},
+	}
+	for _, item := range errListRevert {
+		target, ok := Revert(item.Err)
+		if ok != item.IsValid {
+			t.Error("revert failed")
+			continue
+		}
+		if ok && target.Code != code {
+			t.Error("revert code invalid")
+			continue
 		}
 	}
 }

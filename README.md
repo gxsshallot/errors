@@ -69,3 +69,14 @@ err = errors.NewWithError(CodeError1, otherError)
 err = errors.NewFull(CodeError1, "c1", attachData, enableStack)
 err = errors.NewSubLevelFull(CodeError1, msg, SubCodeError11, "s1", attachData, enableStack)
 ```
+
+Revert error object to errorBase:
+
+```go
+errObj, ok := errors.Revert(err)
+if ok {
+    ...
+} else {
+    ...
+}
+```
