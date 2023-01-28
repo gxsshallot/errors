@@ -8,6 +8,7 @@ import (
 	"strings"
 )
 
+// fix: runtime.CallersFrames not support when go < 1.7
 func getStack(enableStack bool) (stack string) {
 	if !enableStack {
 		return
