@@ -21,7 +21,6 @@ jobs:
     - uses: actions/setup-go@v3
       with:
         go-version: ${{ matrix.go }}
-    - run: go mod init github.com/gaoxiaosong/errors
     - run: go test -v -coverprofile=coverage.txt ./...
     - uses: codecov/codecov-action@v3.1.1
       if: matrix.go == '1.7'
