@@ -65,9 +65,13 @@ err = errors.NewSubLevel(CodeError1, "c1", SubCodeError11, "s1")
 // use other error object as message
 err = errors.NewWithError(CodeError1, otherError)
 
-// full support for attach data and enable stack option
-err = errors.NewFull(CodeError1, "c1", attachData, enableStack)
-err = errors.NewSubLevelFull(CodeError1, msg, SubCodeError11, "s1", attachData, enableStack)
+// full support
+err = errors.NewFull(CodeError1, "c1", enableStack)
+err = errors.NewSubLevelFull(CodeError1, msg, SubCodeError11, "s1", enableStack)
+
+// set/get attach info
+err.Attach["key"] = "value"
+v := err.Attach["key"]
 ```
 
 Revert error object to errorBase:

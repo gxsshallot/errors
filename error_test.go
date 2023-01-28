@@ -6,16 +6,16 @@ import (
 )
 
 func TestNew(t *testing.T) {
-	msg, subMsg, data := "failed", "sub info", "attach data"
+	msg, subMsg := "failed", "sub info"
 	errListManual := []*errorBase{
 		Newf(1001, msg),
 		Newf(1002, "%s %s", msg, "args"),
-		NewFull(1003, msg, data, true),
-		NewFull(1004, msg, data, false),
+		NewFull(1003, msg, true),
+		NewFull(1004, msg, false),
 		NewWithError(1005, errors.New(msg)),
 		NewSubLevel(2001, msg, 2001001, subMsg),
-		NewSubLevelFull(2002, msg, 2002002, subMsg, data, true),
-		NewSubLevelFull(2003, msg, 2003003, subMsg, data, false),
+		NewSubLevelFull(2002, msg, 2002002, subMsg, true),
+		NewSubLevelFull(2003, msg, 2003003, subMsg, false),
 	}
 	for _, err := range errListManual {
 		if len(err.Error()) == 0 {

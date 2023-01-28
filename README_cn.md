@@ -63,9 +63,13 @@ err = errors.NewSubLevel(CodeError1, "c1", SubCodeError11, "s1")
 // 使用其他的error对象作为错误消息
 err = errors.NewWithError(CodeError1, otherError)
 
-// 包含附加数据和调用栈记录开关的全部支持
-err = errors.NewFull(CodeError1, "c1", attachData, enableStack)
-err = errors.NewSubLevelFull(CodeError1, msg, SubCodeError11, "s1", attachData, enableStack)
+// 全部参数支持
+err = errors.NewFull(CodeError1, "c1", enableStack)
+err = errors.NewSubLevelFull(CodeError1, msg, SubCodeError11, "s1", enableStack)
+
+// 设置/获取附加数据信息
+err.Attach["key"] = "value"
+v := err.Attach["key"]
 ```
 
 将error对象还原为errorBase对象:

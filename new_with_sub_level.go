@@ -1,7 +1,7 @@
 package errors
 
 func NewSub(code int, subCode int) *errorBase {
-	return newBase(code, GlobalCodes.Get(code), subCode, GlobalSubCodes.Get(subCode), nil, EnableStack)
+	return newBase(code, GlobalCodes.Get(code), subCode, GlobalSubCodes.Get(subCode), EnableStack)
 }
 
 func NewSubLevel(
@@ -10,7 +10,7 @@ func NewSubLevel(
 	subCode int,
 	subMessage string,
 ) *errorBase {
-	return newBase(code, message, subCode, subMessage, nil, EnableStack)
+	return newBase(code, message, subCode, subMessage, EnableStack)
 }
 
 func NewSubLevelFull(
@@ -18,8 +18,7 @@ func NewSubLevelFull(
 	message string,
 	subCode int,
 	subMessage string,
-	attach interface{},
 	enableStack bool,
 ) *errorBase {
-	return newBase(code, message, subCode, subMessage, attach, enableStack)
+	return newBase(code, message, subCode, subMessage, enableStack)
 }

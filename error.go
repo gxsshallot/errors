@@ -14,7 +14,7 @@ type errorBase struct {
 	Message    string
 	SubCode    int
 	SubMessage string
-	Attach     interface{}
+	Attach     map[string]string
 
 	// crash stack log
 	Stack string
@@ -36,7 +36,6 @@ func newBase(
 	message string,
 	subCode int,
 	subMessage string,
-	attach interface{},
 	enableStack bool,
 ) *errorBase {
 	return &errorBase{
@@ -44,7 +43,7 @@ func newBase(
 		Message:    message,
 		SubCode:    subCode,
 		SubMessage: subMessage,
-		Attach:     attach,
+		Attach:     map[string]string{},
 		Stack:      getStack(enableStack),
 	}
 }
