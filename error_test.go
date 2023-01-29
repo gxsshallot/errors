@@ -71,6 +71,11 @@ func TestNew(t *testing.T) {
 		{errors.New(msg), false},
 	}
 	for _, item := range errListRevert {
+		is := Is(item.Err)
+		if is != item.IsValid {
+			t.Error("is failed")
+			continue
+		}
 		target, ok := Revert(item.Err)
 		if ok != item.IsValid {
 			t.Error("revert failed")

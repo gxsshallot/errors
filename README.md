@@ -2,6 +2,7 @@
 
 [![status](https://github.com/gaoxiaosong/errors/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/gaoxiaosong/errors/actions/workflows/go.yml)
 [![codecov](https://codecov.io/gh/gaoxiaosong/errors/branch/master/graph/badge.svg?token=AOXNUDXAS7)](https://codecov.io/gh/gaoxiaosong/errors)
+[![gover](https://img.shields.io/badge/Go-v1.2+-blue)](https://go.dev/)
 [![godoc](https://pkg.go.dev/badge/github.com/gaoxiaosong/errors?status.svg)](https://pkg.go.dev/github.com/gaoxiaosong/errors)
 [![apache](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
@@ -74,13 +75,17 @@ err.Attach["key"] = "value"
 v := err.Attach["key"]
 ```
 
-Revert error object to errorBase:
+Is/Revert error object to errorBase:
 
 ```go
-errObj, ok := errors.Revert(err)
-if ok {
+func XXX(err error) {
+    ok := errors.Is(err)
     ...
-} else {
-    ...
+    errObj, ok := errors.Revert(err)
+    if ok {
+        ...
+    } else {
+        ...
+    }
 }
 ```
