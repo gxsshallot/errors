@@ -1,9 +1,9 @@
 # errors
 
-[![status](https://github.com/gaoxiaosong/errors/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/gaoxiaosong/errors/actions/workflows/go.yml)
-[![codecov](https://codecov.io/gh/gaoxiaosong/errors/branch/master/graph/badge.svg?token=AOXNUDXAS7)](https://codecov.io/gh/gaoxiaosong/errors)
+[![status](https://github.com/gxsshallot/errors/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/gxsshallot/errors/actions/workflows/go.yml)
+[![codecov](https://codecov.io/gh/gxsshallot/errors/branch/master/graph/badge.svg?token=AOXNUDXAS7)](https://codecov.io/gh/gxsshallot/errors)
 [![gover](https://img.shields.io/badge/Go-v1.2+-blue)](https://go.dev/)
-[![godoc](https://pkg.go.dev/badge/github.com/gaoxiaosong/errors?status.svg)](https://pkg.go.dev/github.com/gaoxiaosong/errors)
+[![godoc](https://pkg.go.dev/badge/github.com/gxsshallot/errors?status.svg)](https://pkg.go.dev/github.com/gxsshallot/errors)
 [![apache](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 这是一个用于产生错误信息对象的库。
@@ -18,7 +18,7 @@
 首先，需要导入包名到程序中：
 
 ```go
-import "github.com/gaoxiaosong/errors"
+import "github.com/gxsshallot/errors"
 ```
 
 (可选) 全局开启/禁用调用栈信息:

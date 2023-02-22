@@ -1,9 +1,9 @@
 # errors
 
-[![status](https://github.com/gaoxiaosong/errors/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/gaoxiaosong/errors/actions/workflows/go.yml)
-[![codecov](https://codecov.io/gh/gaoxiaosong/errors/branch/master/graph/badge.svg?token=AOXNUDXAS7)](https://codecov.io/gh/gaoxiaosong/errors)
+[![status](https://github.com/gxsshallot/errors/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/gxsshallot/errors/actions/workflows/go.yml)
+[![codecov](https://codecov.io/gh/gxsshallot/errors/branch/master/graph/badge.svg?token=AOXNUDXAS7)](https://codecov.io/gh/gxsshallot/errors)
 [![gover](https://img.shields.io/badge/Go-v1.2+-blue)](https://go.dev/)
-[![godoc](https://pkg.go.dev/badge/github.com/gaoxiaosong/errors?status.svg)](https://pkg.go.dev/github.com/gaoxiaosong/errors)
+[![godoc](https://pkg.go.dev/badge/github.com/gxsshallot/errors?status.svg)](https://pkg.go.dev/github.com/gxsshallot/errors)
 [![apache](https://img.shields.io/badge/License-Apache%202-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 [中文文档](README_cn.md)
@@ -20,7 +20,7 @@ This package is used for generating error.
 You should import the package in your source file first:
 
 ```go
-import "github.com/gaoxiaosong/errors"
+import "github.com/gxsshallot/errors"
 ```
 
 (optional) Enable/Disable the runtime stack option globally:
